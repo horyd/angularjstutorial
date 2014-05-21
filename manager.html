@@ -3,3 +3,8 @@
 <input type="text" ng-model="managerName" placeholder="Enter your name here">
 <br>
 <p>It's great to have you on board with the Eagles</p>
+<ul>
+	<li ng-repeat="player in players" ng-init="playerIndex = $index + 1">
+		{{playerIndex}}. {{player.name}} - {{player.num}} - {{player.position}}
+	</li>
+</ul>
