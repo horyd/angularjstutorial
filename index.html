@@ -1,23 +1,36 @@
 <html ng-app="myApp">
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular.min.js"></script>
+		<script src="angular-ui-router.js"></script>
 	</head>
 	<body>
-		<div ng-controller="MainCtrl">
-			<h1>Welcome, Team Manager {{managerName}}</h1>
-			<label>Name:</label>
-			<input type="text" ng-model="managerName" placeholder="Enter your name here">
-			<br>
-			<p>It's great to have you on board with the Eagles</p>
-		</div>
-		<h1>{{managerName}}</h1>
+		<div ui-view="main"></div>
 		<script>
-			var myApp = angular.module('myApp', []);
-			myApp.controller('MainCtrl', function ($scope, $rootScope) {
-				// Try commenting each of these out. Check out what happens!
+			var myApp = angular.module('myApp', ['ui.router']);
+			
+			myApp.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+
+				$locationProvider.html5Mode(true);
+
+				$urlRouterProvider.otherwise('/manager');
+
+				$stateProvider
+				.state('manager', {
+					url: '/manager',
+					views: {
+						'main': {
+							templateUrl: 'manager.html',
+							controller: 'MainCtrl'
+						}
+					}
+				});
+
+			});
+
+			myApp.controller('MainCtrl', function ($scope) {
 				$scope.managerName = 'Jaryd';
-				$rootScope.managerName = 'ROOTSCOPE-D';
 			})
+
 		</script>
 	</body>
 </html>
