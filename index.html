@@ -2,6 +2,14 @@
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular.min.js"></script>
 		<script src="angular-ui-router.js"></script>
+		<style>
+			.stripe {
+				color:red;
+			}
+			.qb {
+				font-size: 24px;
+			}
+		</style>
 	</head>
 	<body>
 		<div ui-view="main"></div>
@@ -29,6 +37,11 @@
 
 			myApp.controller('MainCtrl', function ($scope) {
 				$scope.managerName = 'Jaryd';
+
+				$scope.myStyle = {
+					color: "blue",
+					"font-size": "12px"
+				};
 
 				$scope.players = [
 					{
