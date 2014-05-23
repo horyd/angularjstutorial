@@ -1,0 +1,7 @@
+<input type="text" ng-model="positionQuery" placeholder="Search by position abbreviation">
+<ul>
+	<li ng-repeat="player in players | filter: {position: positionQuery}" ng-init="playerIndex = $index + 1" ng-class="{stripe: $even, qb: player.position === 'QB'}">
+		{{$index + 1}}. {{player.name}} - {{player.num}} - {{player.position}}
+		<a ng-click="player.num = player.num + 1">Increment number</a>
+	</li>
+</ul>

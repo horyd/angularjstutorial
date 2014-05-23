@@ -3,9 +3,4 @@
 <input type="text" ng-model="managerName" placeholder="Enter your name here">
 <br>
 <p ng-style="myStyle">It's great to have you on board with the Eagles</p>
-<input type="text" ng-model="positionQuery" placeholder="Search by position abbreviation">
-<ul>
-	<li ng-repeat="player in players | filter: {position: positionQuery}" ng-init="playerIndex = $index + 1" ng-class="{stripe: $even, qb: player.position === 'QB'}">
-		{{$index + 1}}. {{player.name}} - {{player.num}} - {{player.position}}
-	</li>
-</ul>
+<a ng-click="gotoPlayers()">Goto Players</a>

@@ -1,7 +1,9 @@
 <html ng-app="myApp">
 	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular.min.js"></script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular.min.js"></script> -->
+		<script src="angular.js"></script>
 		<script src="angular-ui-router.js"></script>
+
 		<style>
 			.stripe {
 				color:red;
@@ -12,6 +14,8 @@
 		</style>
 	</head>
 	<body>
+		<a ui-sref="manager">Manager</a>
+		<a ui-sref="players">Players</a>
 		<div ui-view="main"></div>
 		<script>
 			var myApp = angular.module('myApp', ['ui.router']);
@@ -31,11 +35,20 @@
 							controller: 'MainCtrl'
 						}
 					}
+				})
+				.state('players', {
+					url: '/players',
+					views: {
+						'main': {
+							templateUrl: 'players.html',
+							controller: 'PlayerCtrl'
+						}
+					}
 				});
 
 			});
 
-			myApp.controller('MainCtrl', function ($scope) {
+			myApp.controller('MainCtrl', function ($scope, $state) {
 				$scope.managerName = 'Jaryd';
 
 				$scope.myStyle = {
@@ -43,6 +56,12 @@
 					"font-size": "12px"
 				};
 
+				$scope.gotoPlayers = function () {
+					$state.go('players');
+				}
+			});
+
+			myApp.controller('PlayerCtrl', function ($scope) {
 				$scope.players = [
 					{
 						name: 'LeSean McCoy',
@@ -69,7 +88,7 @@
 						position: 'WR'
 					}
 				]
-			})
+			});
 
 		</script>
 	</body>
